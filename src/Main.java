@@ -41,20 +41,20 @@ public class Main {
             if(depth == 0) {
                 System.out.println("├─ " + path.getFileName().toString());
             } else {
-                System.out.println(spacesForDepth(depth) + "└─ " + path.getFileName().toString());
+                System.out.println(spacesForDepth(depth) + "└─ " + path.getFileName().toString() + " <Count:" + Files.list(path).count() + " Size:" + Files.size(path) + "kb>");
             }
             for (Path child : directoryStream) {
                 listDir(child, depth + 1);
             }
         } else {
-            System.out.println(spacesForDepth(depth) + " ─ " + path.getFileName().toString());
+            System.out.println(spacesForDepth(depth) + " ─ " + path.getFileName().toString() + " <Size:" + Files.size(path) + "kb>");
         }
     }
 
     public static String spacesForDepth(int depth) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < depth; i++) {
-            sb.append(" ");
+            sb.append("  ");
         }
         return sb.toString();
     }
